@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -18,7 +19,17 @@ namespace MultiDB.Controllers
 
         public DMNhanViensController()
         {
+            var s = Session;
+            try
+            {
+                db = Session["theDB"] as DBDieuHanh;
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.Message);
+            }
 
+            
             // Cannot put SetupDB here, error : Session = null
         }
         // GET: DMNhanViens
@@ -26,10 +37,12 @@ namespace MultiDB.Controllers
 
         public void SetupDB()
         {
-            //var nameDB = Session["dbName"] as string;
-            //db = new DBDieuHanh(nameDB);
+           
+            var nameDB = Session["dbName"] as string;
 
-            db = Session["theDB"] as DBDieuHanh;
+            // Mỗi lần gọi cần tạo connection mới
+            db = new DBDieuHanh(nameDB);
+            
 
         }
         public ActionResult Index()
