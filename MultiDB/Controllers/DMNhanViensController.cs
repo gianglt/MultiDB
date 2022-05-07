@@ -18,14 +18,18 @@ namespace MultiDB.Controllers
 
         public DMNhanViensController()
         {
+
+            // Cannot put SetupDB here, error : Session = null
         }
         // GET: DMNhanViens
 
 
         public void SetupDB()
         {
-            var nameDB = Session["dbName"] as string;
-            db = new DBDieuHanh(nameDB);
+            //var nameDB = Session["dbName"] as string;
+            //db = new DBDieuHanh(nameDB);
+
+            db = Session["theDB"] as DBDieuHanh;
 
         }
         public ActionResult Index()

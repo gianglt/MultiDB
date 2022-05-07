@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MultiDB.Models;
 
 namespace MultiDB.Controllers
 {
     public class HomeController : Controller
     {
+        public DBDieuHanh db;
         public ActionResult Index()
         {
             Session.Add("dbName", "dhvp_2");
+
+            var nameDB = Session["dbName"] as string;
+            db = new DBDieuHanh(nameDB);
+
+            Session.Add("theDB", db);
+
 
             return View();
         }
