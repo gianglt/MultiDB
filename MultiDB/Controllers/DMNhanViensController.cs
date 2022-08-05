@@ -20,21 +20,25 @@ namespace MultiDB.Controllers
         {
 
             // Cannot put SetupDB here, error : Session = null
+
+            //string strDBName = System.Web.HttpContext.Current.Session["dbName"] as string;
+            string strDBName = System.Web.HttpContext.Current.Session["dbName"] as string;
+            db = new DBDieuHanh(strDBName);
         }
         // GET: DMNhanViens
 
 
-        public void SetupDB()
-        {
-            var nameDB = Session["dbName"] as string;
-            db = new DBDieuHanh(nameDB);
+        //public void SetupDB()
+        //{
+        //    var nameDB = Session["dbName"] as string;
+        //    db = new DBDieuHanh(nameDB);
 
-            //db = Session["theDB"] as DBDieuHanh;
+        //    //db = Session["theDB"] as DBDieuHanh;
 
-        }
+        //}
         public ActionResult Index()
         {
-            SetupDB();
+            //SetupDB();
             return View(db.DMNhanVien.ToList());
         }
 
