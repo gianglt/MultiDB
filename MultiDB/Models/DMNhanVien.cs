@@ -9,12 +9,12 @@ namespace MultiDB.Models
     [Table("DMNhanVien")]
     public partial class DMNhanVien
     {
-        public long ID { get; set; }
+        public int ID { get; set; }
 
         [StringLength(250)]
-        public string TenNhanVien { get; set; }
+        public string HoTen { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? NgaySinh { get; set; }
+        public DateTime? Ngay_CN { get; set; }
     }
 }
