@@ -26,10 +26,10 @@ namespace MultiDB.Controllers
 
         public void SetupDB()
         {
-            //var nameDB = Session["dbName"] as string;
-            //db = new DBDieuHanh(nameDB);
+            var nameDB = Session["dbName"] as string;
+            db = new DBDieuHanh(nameDB);
 
-            db = Session["theDB"] as DBDieuHanh;
+            //db = Session["theDB"] as DBDieuHanh;
 
         }
         public ActionResult Index()
