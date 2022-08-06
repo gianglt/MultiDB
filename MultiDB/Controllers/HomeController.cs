@@ -12,7 +12,7 @@ namespace MultiDB.Controllers
         public DBDieuHanh db;
         public ActionResult Index()
         {
-            Session.Add("dbName", "dhvp_2");
+            Session.Add("dbName", "dieuhanh2020");
 
             var nameDB = Session["dbName"] as string;
             db = new DBDieuHanh(nameDB);

@@ -19,35 +19,27 @@ namespace MultiDB.Controllers
 
         public DMNhanViensController()
         {
-            var s = Session;
-            try
-            {
-                db = Session["theDB"] as DBDieuHanh;
-            }
-            catch (Exception e)
-            {
-                Debug.Print(e.Message);
-            }
 
-            
             // Cannot put SetupDB here, error : Session = null
+
+            //string strDBName = System.Web.HttpContext.Current.Session["dbName"] as string;
+            string strDBName = System.Web.HttpContext.Current.Session["dbName"] as string;
+            db = new DBDieuHanh(strDBName);
         }
         // GET: DMNhanViens
 
 
-        public void SetupDB()
-        {
-           
-            var nameDB = Session["dbName"] as string;
+        //public void SetupDB()
+        //{
+        //    var nameDB = Session["dbName"] as string;
+        //    db = new DBDieuHanh(nameDB);
 
-            // Mỗi lần gọi cần tạo connection mới
-            db = new DBDieuHanh(nameDB);
-            
+        //    //db = Session["theDB"] as DBDieuHanh;
 
-        }
+        //}
         public ActionResult Index()
         {
-            SetupDB();
+            //SetupDB();
             return View(db.DMNhanVien.ToList());
         }
 
@@ -77,7 +69,7 @@ namespace MultiDB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,TenNhanVien,NgaySinh")] DMNhanVien dMNhanVien)
+        public ActionResult Create([Bind(Include = "ID,HoTen,Ngay_CN")] DMNhanVien dMNhanVien)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +101,7 @@ namespace MultiDB.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,TenNhanVien,NgaySinh")] DMNhanVien dMNhanVien)
+        public ActionResult Edit([Bind(Include = "ID,HoTen,Ngay_CN")] DMNhanVien dMNhanVien)
         {
             if (ModelState.IsValid)
             {
